@@ -11,6 +11,7 @@ return require('packer').startup(function(use)
   use('nvim-treesitter/nvim-treesitter', {run= ':TSUpdate'})
   use('nvim-treesitter/playground')
   use('duane9/nvim-rg')
+  use('nvim-lualine/lualine.nvim')
   use('nvim-tree/nvim-web-devicons')
   use('nvim-tree/nvim-tree.lua')
   use('williamboman/mason.nvim')
@@ -31,4 +32,13 @@ return require('packer').startup(function(use)
       {'L3MON4D3/LuaSnip'},
   }
 }
+ use('rebelot/kanagawa.nvim')
+ use('f-person/git-blame.nvim')
+ use {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = function()
+        require("nvim-autopairs").setup {}
+    end
+ }
 end)
