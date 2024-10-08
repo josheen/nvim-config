@@ -33,6 +33,7 @@ return require('packer').startup(function(use)
   }
 }
  use('rebelot/kanagawa.nvim')
+ use('catppuccin/nvim')
  use('f-person/git-blame.nvim')
  use {
     "windwp/nvim-autopairs",

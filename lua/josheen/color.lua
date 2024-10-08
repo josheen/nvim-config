@@ -5,7 +5,7 @@ local function colorscheme_exists(name)
 end
 
 -- Desired colorscheme
-local colorscheme = 'kanagawa'
+local colorscheme = 'catppuccin'
 
 -- Check if the colorscheme exists before setting it
 if colorscheme_exists(colorscheme) then
