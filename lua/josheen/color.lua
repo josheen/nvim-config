@@ -14,10 +14,10 @@ else
     vim.cmd('colorscheme peaksea')
 end
 
-vim.opt.background = "dark"
+-- vim.opt.background = "dark"
 
-vim.cmd([[
-    highlight Normal guibg=NONE ctermbg=NONE
-    highlight NonText guibg=NONE ctermbg=NONE
-    highlight LineNr guibg=NONE ctermbg=NONE
-]])
+-- vim.cmd([[
+--     highlight Normal guibg=NONE ctermbg=NONE
+--     highlight NonText guibg=NONE ctermbg=NONE
+--     highlight LineNr guibg=NONE ctermbg=NONE
+-- ]])
