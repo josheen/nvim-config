@@ -1,4 +1,18 @@
-vim.cmd("colorscheme kanagawa")
+-- Function to check if a colorscheme exists
+local function colorscheme_exists(name)
+    local success = pcall(vim.cmd, 'colorscheme ' .. name)
+    return success
+end
+
+-- Desired colorscheme
+local colorscheme = 'kanagawa'
+
+-- Check if the colorscheme exists before setting it
+if colorscheme_exists(colorscheme) then
+    vim.cmd('colorscheme ' .. colorscheme)
+else
+    vim.cmd('colorscheme peaksea')
+end
 
 vim.opt.background = "dark"
 
