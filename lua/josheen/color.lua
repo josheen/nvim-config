@@ -1,2 +1,2 @@
-vim.cmd("colorscheme peaksea")
+vim.cmd("colorscheme kanagawa")
 
