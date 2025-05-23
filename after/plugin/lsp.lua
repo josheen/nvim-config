@@ -1,17 +1,31 @@
-local lsp_zero = require('lsp-zero')
-
-lsp_zero.on_attach(function(client, bufnr)
-    -- see :help lsp-zero-keybindings
-    -- to learn the available actions
-  lsp_zero.default_keymaps({buffer = bufnr})
-end)
-
 require('mason').setup({})
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('mason-lspconfig').setup({
-  -- Replace the language servers listed here 
-  -- with the ones you want to install
-  ensure_installed = {'ts_ls', 'pyright', 'clangd'},
+  ensure_installed = { "lua_ls", "pyright", "ts_ls", "clangd", "rust_analyzer"},
+  automatic_installation = true,
   handlers = {
-    lsp_zero.default_setup,
+      function(server_name)
+          require("lspconfig")[server_name].setup {
+              capabilities = capabilities,
+          }
+      end
   },
 })
+local bufopts = { noremap=true, silent=true, buffer=bufnr }
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+
+
+require('cmp').setup {
+    sources = {
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
+    },
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+        end
+    },
+}

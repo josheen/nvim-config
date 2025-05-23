@@ -14,33 +14,21 @@ return require('packer').startup(function(use)
   use('nvim-lualine/lualine.nvim')
   use('nvim-tree/nvim-web-devicons')
   use('nvim-tree/nvim-tree.lua')
-  use('williamboman/mason.nvim')
-  use('williamboman/mason-lspconfig.nvim')
+  use('neovim/nvim-lspconfig')
+  use('mason-org/mason.nvim')
+  use('hrsh7th/nvim-cmp')
+  use('hrsh7th/cmp-nvim-lsp')
+  use('L3MON4D3/LuaSnip')
+  use('mason-org/mason-lspconfig.nvim')
+  use('rebelot/kanagawa.nvim')
+  use('catppuccin/nvim')
+  use('f-person/git-blame.nvim')
   use {
-  'VonHeikemen/lsp-zero.nvim',
-  branch = 'v3.x',
-  requires = {
-      --- Uncomment these if you want to manage the language servers from neovim
-      -- {'williamboman/mason.nvim'},
-      -- {'williamboman/mason-lspconfig.nvim'},
-
-      -- LSP Support
-      {'neovim/nvim-lspconfig'},
-      -- Autocompletion
-      {'hrsh7th/nvim-cmp'},
-      {'hrsh7th/cmp-nvim-lsp'},
-      {'L3MON4D3/LuaSnip'},
-  }
-}
- use('rebelot/kanagawa.nvim')
- use('catppuccin/nvim')
- use('f-person/git-blame.nvim')
- use {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     config = function()
         require("nvim-autopairs").setup {}
     end
  }
- use('lewis6991/gitsigns.nvim')
+  use('lewis6991/gitsigns.nvim')
 end)
