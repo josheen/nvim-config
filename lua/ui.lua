@@ -40,3 +40,5 @@ vim.cmd([[
     highlight NonText guibg=NONE ctermbg=NONE
     highlight LineNr guibg=NONE ctermbg=NONE
 ]])
+vim.opt.cursorline = true
+require("bufferline").setup{}
