@@ -1,3 +1,4 @@
+
 -- Function to check if a colorscheme exists
 local function colorscheme_exists(name)
     local success = pcall(vim.cmd, 'colorscheme ' .. name)

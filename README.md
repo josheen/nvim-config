@@ -1,4 +1,4 @@
 # nvim-config
 
 Dependencies
-- https://github.com/wbthomason/packer.nvim: Run a ```:PackerSync``` during first initialization
+- https://github.com/folke/lazy.nvim project now uses lazy.nvim
