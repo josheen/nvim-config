@@ -1,3 +1,10 @@
+-- Disable netrw early (before any plugins load)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- Set leader key before lazy.nvim so all keymaps use it
+vim.g.mapleader = " "
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -11,16 +18,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     vim.fn.getchar()
     os.exit(1)
   end
-end
-vim.opt.rtp:prepend(lazypath)
-
--- Set leader key (optional but common)
-vim.g.mapleader = " "
-
--- Load lazy.nvim
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  error("lazy.nvim not installed")
 end
 vim.opt.rtp:prepend(lazypath)
 

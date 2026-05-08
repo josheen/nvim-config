@@ -19,8 +19,6 @@ vim.opt.undofile = true
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
-vim.g.mapleader = " "
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.mouse = ""
-require('Comment').setup()
