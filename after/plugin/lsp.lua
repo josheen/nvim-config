@@ -8,7 +8,22 @@ require('mason-lspconfig').setup({
           require("lspconfig")[server_name].setup {
               capabilities = capabilities,
           }
-      end
+      end,
+      ["clangd"] = function()
+          require("lspconfig").clangd.setup {
+              capabilities = capabilities,
+              cmd = {
+                  "clangd",
+                  "--background-index",
+                  "--clang-tidy",
+                  "--header-insertion=iwyu",
+                  "--completion-style=detailed",
+                  "--all-scopes-completion",
+                  "--cross-file-rename",
+                  "--pch-storage=memory",
+              },
+          }
+      end,
   },
 })
 
