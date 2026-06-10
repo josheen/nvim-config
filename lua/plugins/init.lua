@@ -4,15 +4,38 @@ return {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs',
-    opts = {
-      ensure_installed = { 'bash', 'c', 'cpp', 'json', 'lua', 'markdown', 'python', 'query', 'vim', 'vimdoc', 'yaml' },
-      sync_install = false,
-      auto_install = true,
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-      },
-    },
+    init = function()
+      local parser_dir = vim.fn.stdpath('data') .. '/site/parser'
+      vim.opt.runtimepath:prepend(parser_dir)
+    end,
+    opts = function()
+      local uv = vim.uv or vim.loop
+      local max_filesize = 1024 * 1024 -- 1 MB
+      local parser_dir = vim.fn.stdpath('data') .. '/site/parser'
+
+      return {
+        parser_install_dir = parser_dir,
+        ensure_installed = { 'bash', 'c', 'cpp', 'json', 'lua', 'markdown', 'python', 'query', 'vim', 'vimdoc', 'yaml' },
+        sync_install = false,
+        auto_install = false,
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = false,
+          disable = function(lang, buf)
+            local name = vim.api.nvim_buf_get_name(buf)
+            if name ~= '' then
+              local ok, stats = pcall(uv.fs_stat, name)
+              if ok and stats and stats.size and stats.size > max_filesize then
+                return true
+              end
+            end
+
+            local ok = pcall(vim.treesitter.get_parser, buf, lang)
+            return not ok
+          end,
+        },
+      }
+    end,
   },
   { 'duane9/nvim-rg' },
   { 'nvim-lualine/lualine.nvim' },
